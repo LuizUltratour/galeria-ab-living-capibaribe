@@ -829,26 +829,23 @@ function updateLb(dir) {
   elLbPrev.disabled = st.lbIdx === 0;
   elLbNext.disabled = st.lbIdx === st.lbItems.length - 1;
 
-  if (st._lbSwapT) clearTimeout(st._lbSwapT);
   elLbImg.classList.remove('o-next','o-prev','i-next','i-prev','i-fade');
 
+  // Pré-carrega a nova imagem e só então troca: a anterior fica na tela até
+  // a próxima estar pronta, sem piscar nem repetir a mesma imagem.
+  const token = st._lbTok = (st._lbTok || 0) + 1;
   const swap = () => {
+    if (token !== st._lbTok) return;           // clique mais novo já assumiu
     elLbImg.src = item.src;
-    elLbImg.style.opacity = '1';
-    elLbImg.classList.remove('o-next','o-prev');
-    void elLbImg.offsetWidth; // reinicia a animação
+    void elLbImg.offsetWidth;                  // reinicia a animação
     elLbImg.classList.add(dir === -1 ? 'i-prev' : dir === 1 ? 'i-next' : 'i-fade');
   };
+  const pre = new Image();
+  pre.src = item.src;
+  if (pre.decode) pre.decode().then(swap, swap); else { pre.onload = pre.onerror = swap; }
 
-  if (dir === 1 || dir === -1) {
-    // fase 1: imagem atual desliza para fora no sentido da navegação
-    void elLbImg.offsetWidth;
-    elLbImg.classList.add(dir === 1 ? 'o-next' : 'o-prev');
-    st._lbSwapT = setTimeout(swap, 150);   // fase 2: nova entra pelo lado oposto
-  } else {
-    elLbImg.style.opacity = '0';
-    st._lbSwapT = setTimeout(swap, 110);
-  }
+  // aquece as vizinhas para a próxima troca ser instantânea
+  [st.lbIdx - 1, st.lbIdx + 1].forEach(i => { if (st.lbItems[i]) new Image().src = st.lbItems[i].src; });
 }
 
 function navLb(dir) {
