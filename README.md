@@ -58,9 +58,27 @@ impresso pelo build).
 ./deploy.ps1 -WithVideo  # inclui o vídeo
 ```
 
-## 3DVista
+## Integração 3DVista
 
-Trechos prontos em `3dvista-snippets.md`: `GaleriaImagens(1|0)`, `GaleriaPlantas(1|0)`, `AbrirGaleriaVideos(1|0)`.
+Loader no JavaScript global do projeto (roda uma vez):
+
+```js
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/ab-corte-real/galeria-living-capibaribe/inject.js?v=' + Date.now();
+  document.head.appendChild(s);
+})();
+```
+
+Chamadas nos botões/hotspots — trechos prontos em `3dvista-snippets.md`:
+
+```js
+GaleriaImagens(1);      // abre galeria de imagens    · GaleriaImagens(0) fecha
+GaleriaPlantas(1);      // abre galeria de plantas    · GaleriaPlantas(0) fecha
+AbrirGaleriaVideos(1);  // abre o vídeo               · AbrirGaleriaVideos(0) fecha
+```
+
+`GaleriaImagens` abre com `?mode=imagens` (sem Plantas) e `GaleriaPlantas` com `?mode=plantas`.
 
 ## Pendências
 
