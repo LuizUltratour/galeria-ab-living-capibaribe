@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vídeo — Itá Nobre</title>
+  <title>Vídeo — Living Capibaribe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Itá Nobre — taupe (fundo) + marrom escuro (texto) */
-      --bg:            #C3AEA1;   /* taupe — fundo da página */
-      --ink:           #2E2019;   /* texto sobre o taupe */
-      --border:        rgba(46,32,25,0.22);
-      --border-strong: rgba(46,32,25,0.55);
-      --accent:        #5A3A2B;   /* marrom — cor secundária */
+      /* Living Capibaribe — principal #301711 · secundária #BE4119 */
+      --bg:            #301711;
+      --ink:           #FFFFFF;
+      --border:        rgba(255,255,255,0.14);
+      --border-strong: rgba(255,255,255,0.34);
+      --accent:        #BE4119;
       --accent-ink:    #FFFFFF;
-      --video-bg:      #2A1710;   /* palco do vídeo */
+      --video-bg:      #1C0D09;   /* palco do vídeo */
       --font-serif:    'Montserrat', system-ui, sans-serif;
       --font-sans:     'Montserrat', system-ui, sans-serif;
       --ease:          cubic-bezier(0.4, 0, 0.2, 1);
@@ -57,20 +57,11 @@
     #vg-brand { display: flex; align-items: center; }
     /* logo empilhado; a escrita roda uma vez (com prefers-reduced-motion o
        próprio SVG mostra direto o quadro final) */
-    #vg-logo { height: clamp(64px, 6.4vw, 92px); width: auto; display: block; }
+    #vg-logo { height: clamp(44px, 4.6vw, 64px); width: auto; display: block; }
 
-    #btn-close {
-      width: 38px; height: 38px;
-      border: 1px solid var(--border-strong);
-      background: transparent;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-      color: var(--ink);
-      transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
-      flex-shrink: 0;
-    }
-    #btn-close:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+    #btn-close { width: 44px; height: 44px; border: none; padding: 0; cursor: pointer; flex-shrink: 0; border-radius: 12px;
+      background: url('assets/brand/close-normal.png') center / contain no-repeat; transition: transform 0.2s var(--ease); }
+    #btn-close:hover { background-image: url('assets/brand/close-hover.png'); transform: scale(1.08); }
 
     /* ── STAGE ── */
     #vg-stage {
@@ -142,18 +133,14 @@
 <div id="vg-root">
   <header id="vg-header">
     <div id="vg-brand">
-      <img id="vg-logo" src="assets/brand/logo.svg" alt="Itá Nobre">
+      <img id="vg-logo" src="assets/brand/logo.png" alt="Living Capibaribe">
     </div>
-    <button id="btn-close" title="Fechar" aria-label="Fechar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
-        <path d="M18 6L6 18M6 6l12 12"/>
-      </svg>
-    </button>
+    <button id="btn-close" title="Fechar" aria-label="Fechar"></button>
   </header>
 
   <div id="vg-stage">
     <video id="vg-player"
-           src="assets/video/video-ita-nobre.mp4"
+           src="assets/video/video-living-capibaribe.mp4"
            autoplay playsinline controls
            preload="auto">
     </video>

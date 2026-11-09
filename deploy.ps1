@@ -1,5 +1,5 @@
 <#
-  deploy.ps1 — Deploy da galeria Ita Nobre (Tenda) para o AWS S3.
+  deploy.ps1 — Deploy da galeria Living Capibaribe (AB) para o AWS S3.
 
   Uso:
     ./deploy.ps1             # sync completo + cache-control no HTML/JS
@@ -17,7 +17,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$Bucket = 's3://skylineip/Tour Virtual/TENDA/ferramentas/galeria/ita nobre'
+$Bucket = 's3://skylineip/Tour Virtual/ab-corte-real/galeria-living-capibaribe'
 $NoCache = 'no-cache,no-store,must-revalidate'
 
 Set-Location -Path $PSScriptRoot
@@ -55,7 +55,7 @@ else {
   aws s3 sync . "$Bucket/" `
     --exclude "*" `
     --include "index.html" --include "video-gallery.html" --include "inject.js" `
-    --include "assets/brand/*" --include "assets/areas-comuns/*" --include "assets/apartamento/*" `
+    --include "assets/brand/*" --include "assets/fachada/*" --include "assets/areas-comuns/*" --include "assets/apartamento/*" --include "assets/plantas/*" `
     --include "assets/miniaturas/*" --include "assets/video/*" `
     --exclude "*Thumbs.db" `
     @videoExclude `
@@ -77,4 +77,4 @@ else {
 }
 
 Write-Host 'Deploy concluido.' -ForegroundColor Green
-Write-Host "Base: https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/" -ForegroundColor DarkGray
+Write-Host "Base: https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/ab-corte-real/galeria-living-capibaribe/" -ForegroundColor DarkGray

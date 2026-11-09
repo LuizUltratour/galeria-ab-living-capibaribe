@@ -1,11 +1,11 @@
 (function (w, d) {
   'use strict';
 
-  var BASE = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/';
+  var BASE = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/ab-corte-real/galeria-living-capibaribe/';
   var GALLERY_URL       = BASE + 'index.html';
   var VIDEO_GALLERY_URL = BASE + 'video-gallery.html';
 
-  var BG = '#C3AEA1';   // taupe do empreendimento — aparece enquanto o iframe carrega
+  var BG = '#301711';   // cor principal do empreendimento — aparece enquanto o iframe carrega
 
   var overlay    = null;
   var msgHandler = null;
