@@ -68,6 +68,7 @@
 
     /* botões em imagem (assets/brand/*-normal|hover.png) */
     .img-btn {
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
       width: 44px; height: 44px; flex-shrink: 0;
       border: none; padding: 0; cursor: pointer;
       background: center / contain no-repeat;
@@ -75,18 +76,15 @@
       transition: transform 0.2s var(--ease);
     }
     .img-btn:active { transform: scale(0.95); }
-    @media (hover: hover) { .img-btn:hover { transform: scale(1.08); } }
+    @media (hover: hover) and (pointer: fine) { .img-btn:hover { transform: scale(1.08); } }
     .img-btn:focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; }
     .img-btn:disabled { opacity: 0.25; cursor: default; }
     .ib-close { background-image: url('assets/brand/close-normal.png'); }
-    .ib-close:active { background-image: url('assets/brand/close-hover.png'); }
-    @media (hover: hover) { .ib-close:hover { background-image: url('assets/brand/close-hover.png'); } }
+    @media (hover: hover) and (pointer: fine) { .ib-close:hover, .ib-close:active { background-image: url('assets/brand/close-hover.png'); } }
     .ib-prev  { background-image: url('assets/brand/voltar-normal.png'); }
-    .ib-prev:active:not(:disabled) { background-image: url('assets/brand/voltar-hover.png'); }
-    @media (hover: hover) { .ib-prev:hover:not(:disabled) { background-image: url('assets/brand/voltar-hover.png'); } }
+    @media (hover: hover) and (pointer: fine) { .ib-prev:hover:not(:disabled), .ib-prev:active:not(:disabled) { background-image: url('assets/brand/voltar-hover.png'); } }
     .ib-next  { background-image: url('assets/brand/proximo-normal.png'); }
-    .ib-next:active:not(:disabled) { background-image: url('assets/brand/proximo-hover.png'); }
-    @media (hover: hover) { .ib-next:hover:not(:disabled) { background-image: url('assets/brand/proximo-hover.png'); } }
+    @media (hover: hover) and (pointer: fine) { .ib-next:hover:not(:disabled), .ib-next:active:not(:disabled) { background-image: url('assets/brand/proximo-hover.png'); } }
 
     /* ── FILTROS ── */
     #g-filters { flex-shrink: 0; padding-bottom: 6px; }
@@ -895,8 +893,8 @@ function init() {
 
   $('btn-close').addEventListener('click', closeGallery);
   $('lb-close').addEventListener('click', closeLb);
-  elLbPrev.addEventListener('click', () => navLb(-1));
-  elLbNext.addEventListener('click', () => navLb(1));
+  elLbPrev.addEventListener('click', () => { navLb(-1); elLbPrev.blur(); });
+  elLbNext.addEventListener('click', () => { navLb(1); elLbNext.blur(); });
   $('lb-body').addEventListener('click', e => { if (e.target === $('lb-body')) closeLb(); });
 }
 
